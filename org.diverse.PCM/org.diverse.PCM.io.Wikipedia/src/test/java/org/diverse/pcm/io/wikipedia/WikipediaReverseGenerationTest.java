@@ -1,5 +1,7 @@
 package org.diverse.pcm.io.wikipedia;
 
+import org.diverse.pcm.api.java.AbstractFeature;
+import org.diverse.pcm.api.java.Feature;
 import org.diverse.pcm.api.java.PCM;
 import org.diverse.pcm.api.java.Product;
 import org.diverse.pcm.io.wikipedia.export.*;
@@ -183,5 +185,4 @@ public class WikipediaReverseGenerationTest {
         }
         return true;
     }
-}
 }
