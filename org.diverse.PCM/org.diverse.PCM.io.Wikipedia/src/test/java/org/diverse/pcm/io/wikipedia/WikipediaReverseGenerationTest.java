@@ -143,4 +143,45 @@ public class WikipediaReverseGenerationTest {
         //assertTrue(pcms0.equals(pcms1));
 
     }*/
+
+    public boolean comparePCM(PCM pcm1, PCM pcm2){
+        if(pcm1.getFeatures().size() != pcm2.getFeatures().size()) {
+            return false;
+        }
+        if(!pcm1.getFeatures().containsAll(pcm2.getFeatures()) ||
+                !pcm2.getFeatures().containsAll(pcm1.getFeatures())){
+            return false;
+        }
+        if(pcm1.getProducts().size() != pcm2.getProducts().size()){
+            return false;
+        }
+        if(!pcm1.getProducts().containsAll(pcm2.getProducts()) ||
+                !pcm2.getProducts().containsAll(pcm1.getProducts())){
+            return false;
+        }
+
+        Iterator itfeature1 = pcm1.getFeatures().iterator();
+        Iterator itfeature2 = pcm2.getFeatures().iterator();
+        Iterator itproduct1 = pcm1.getProducts().iterator();
+        Iterator itproduct2 = pcm2.getProducts().iterator();
+
+        while(itfeature1.hasNext()){
+            while (itfeature2.hasNext()){
+                while(itproduct1.hasNext()){
+                    while (itproduct2.hasNext()){
+                        Product product1 = (Product)itproduct1.next();
+                        AbstractFeature feature1 = (Feature)itfeature1.next();
+                        Product product2 = (Product)itproduct2.next();
+                        AbstractFeature feature2 = (Feature)itfeature2.next();
+                        if(product1.getCell(feature1).getContent() != product2.getCell(feature2).getContent()){
+                            return false;
+                        }
+                    }
+                }
+
+            }
+        }
+        return true;
+    }
+}
 }
